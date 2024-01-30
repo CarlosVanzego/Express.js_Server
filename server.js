@@ -1,17 +1,26 @@
-const express = require('express')
-const app = express()
+// Importing Express framework
+const express = require('express');
+// Creating an instance of Express application
+const app = express();
 
-app.use(express.static("public"))
-app.use(express.urlencoded( {extended: true }))
-app.use(express.json())
+// Serving static files from the "public" directory
+app.use(express.static("public"));
+// Parsing incoming requests with urlencoded payloads
+app.use(express.urlencoded({ extended: true }));
+// Parsing incoming requests with JSON payloads
+app.use(express.json());
 
-const logger = require('./middleware/log.js')
+// Importing custom middleware for logging
+const logger = require('./middleware/log.js');
 
-app.set('view engine', 'ejs')
+// Setting the view engine to EJS
+app.set('view engine', 'ejs');
 
-const userRouter = require('./routes/users')
+// Importing user routes
+const userRouter = require('./routes/users');
 
-app.use('/users', userRouter)
+// Mounting user routes to the "/users" endpoint
+app.use('/users', userRouter);
 
-app.listen(3000)
-
+// Starting the Express server on port 3000
+app.listen(3000);
